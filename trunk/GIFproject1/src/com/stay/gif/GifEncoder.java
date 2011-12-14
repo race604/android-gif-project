@@ -4,8 +4,17 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.ui.DebugUtil;
+import com.stay.test.DebugUtil;
 
+/**
+ * @Description: GifEncoder 
+ * you can switch images into gif
+ *
+ * @author Stay
+ *
+ * @Date 2011-12-13 05:58:56 pm
+ * 
+ */
 public class GifEncoder {
 	public Context mContext;
 	static GifEncoder giffle = null;
@@ -21,8 +30,18 @@ public class GifEncoder {
 		System.loadLibrary("gifflen");
 	}
 
-	public void encode(Context mContexts, int[] images, int delay, String name) {
-		bitmap = BitmapFactory.decodeResource(mContexts.getResources(), images[0]);
+	/** 
+	* @Description: encode image to gif
+	*
+	* @param context
+	* @param images	you can change this to paths
+	* @param delay	each image's delay in image
+	* @param name	generate file in sd card
+	*
+	* @return void 返回类型 
+	*/ 
+	public void encode(Context context, int[] images, int delay, String name) {
+		bitmap = BitmapFactory.decodeResource(context.getResources(), images[0]);
 		width = bitmap.getWidth();
 		height = bitmap.getHeight();
 		length = images.length;
@@ -33,7 +52,7 @@ public class GifEncoder {
 		}
 		pixels = new int[width * height];
 		for (int i = 0; i < images.length; i++) {
-			bitmap = BitmapFactory.decodeResource(mContexts.getResources(), images[i]);
+			bitmap = BitmapFactory.decodeResource(context.getResources(), images[i]);
 			DebugUtil.debug(bitmap.toString());
 			if (width < bitmap.getWidth() || height < bitmap.getHeight()) {
 				bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
@@ -45,6 +64,14 @@ public class GifEncoder {
 		close();
 	}
 
+	/** 
+	* @Description: 
+	*
+	* @param pixels	pixels of one frame of gif 
+	* @return
+	*
+	* @return int  
+	*/ 
 	public native int addFrame(int[] pixels);
 
 	/**
@@ -58,5 +85,11 @@ public class GifEncoder {
 	 */
 	public native int init(String name, int width, int height, int color, int quality, int delay);
 
+	/** 
+	* @Description: 
+	*	when finish encode gif ,close the resource
+	*
+	* @return void 
+	*/ 
 	public native void close();
 }
