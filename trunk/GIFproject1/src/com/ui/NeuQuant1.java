@@ -1,4 +1,4 @@
-package com.ui;
+package com.stay.test;
 /* NeuQuant Neural-Net Quantization Algorithm
  * ------------------------------------------
  *
@@ -20,7 +20,7 @@ package com.ui;
  */
 
 // Ported to Java 12/00 K Weiner
-
+@Deprecated
 public class NeuQuant1 {
 
 	protected static final int netsize = 256; /* number of colours used */

@@ -1,10 +1,10 @@
-package com.ui;
+package com.stay.test;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
 import android.graphics.Bitmap;
-
+@Deprecated
 public class SimpleGifEncoder {
     short width_, height_;
     int numColors_;
