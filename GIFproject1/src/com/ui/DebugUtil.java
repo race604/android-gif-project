@@ -1,4 +1,4 @@
-package com.ui;
+package com.stay.test;
 
 import android.content.Context;
 import android.util.Log;

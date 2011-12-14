@@ -1,4 +1,4 @@
-package com.ui;
+package com.stay.test;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -29,7 +29,7 @@ import android.graphics.Color;
  * @version 1.03 November 2003
  *
  */
-
+@Deprecated
 public class AnimatedGifEncoder {
 
 	protected int width; // image size

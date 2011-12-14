@@ -1,4 +1,4 @@
-package com.ui;
+package com.stay.test;
 
 import java.io.DataOutputStream;
 import java.util.Hashtable;
@@ -8,7 +8,7 @@ import java.util.Vector;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
-
+@Deprecated
 public class GifEncoder {
 
 	String b;

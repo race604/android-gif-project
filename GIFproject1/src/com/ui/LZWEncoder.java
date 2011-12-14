@@ -1,11 +1,11 @@
-package com.ui;
+package com.stay.test;
 import java.io.OutputStream;
 import java.io.IOException;
 
 //==============================================================================
 //  Adapted from Jef Poskanzer's Java port by way of J. M. G. Elliott.
 //  K Weiner 12/00
-
+@Deprecated
 class LZWEncoder {
 
 	private static final int EOF = -1;
