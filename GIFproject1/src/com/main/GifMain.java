@@ -1,10 +1,8 @@
-package com.main;
+package com.stay.main;
 
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -13,9 +11,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
+import com.stay.gif.GifDecode;
 import com.stay.gif.GifEncoder;
-import com.ui.DebugUtil;
+import com.stay.test.DebugUtil;
 
+/**
+ * @Description: this demo is to support gif decode and encode in Android phone 
+ *	you can see {@link GifDecode} and {@link GifEncoder} how it works
+ * @author Stay
+ *
+ * @Date 2011-12-13 下午06:12:22
+ * 
+ */
 public class GifMain extends Activity implements OnClickListener {
 	protected static final int ENCODE = 0;
 	protected static final int DECODE = 1;
@@ -23,10 +30,8 @@ public class GifMain extends Activity implements OnClickListener {
 			R.drawable.girl_5, R.drawable.girl_6, R.drawable.girl_7, R.drawable.girl_8, R.drawable.girl_9, R.drawable.girl_10,
 			R.drawable.girl_11 };
 //	private int[] array = new int[] { R.drawable.girl_1, R.drawable.girl_2, R.drawable.girl_3, R.drawable.girl_4};
-	private int i = 0;
 	private Button decodeBtn;
 	private Button encodeBtn;
-//	09-15 12:06:36.894: ERROR/InputDispatcher(163): channel '408d2d18 com.main/com.main.GifMain (server)' ~ Consumer closed input channel or an error occurred.  events=0x8
 
 	/** Called when the activity is first created. */
 	@Override
@@ -48,7 +53,7 @@ public class GifMain extends Activity implements OnClickListener {
 				encode();
 				break;
 			case DECODE:
-				
+				startActivity(new Intent(GifMain.this,GifDisplayActivity.class));
 				break;
 			default:
 				break;
@@ -58,22 +63,8 @@ public class GifMain extends Activity implements OnClickListener {
 	};
 
 	private void encode() {
-//		// try {
-//		AnimatedGifEncoder1 e = new AnimatedGifEncoder1();
-//		e.setRepeat(0);
-//		e.start(Environment.getExternalStorageDirectory() + "/girl.gif");
-////		for (int i = 0; i < array.length; i++) {
-////			e.setDelay(500); // 1 frame per sec
-////			e.addFrame(BitmapFactory.decodeResource(getResources(), array[i++]));
-////		}
-//		e.addFrame(BitmapFactory.decodeResource(getResources(), R.drawable.girl_1));
-//		e.finish();
 		GifEncoder giffle = new GifEncoder();
-//		Bitmap[] bitmaps = new Bitmap[array.length];
-//		for (int i = 0; i < array.length; i++) {
-//			bitmaps[i] = BitmapFactory.decodeResource(getResources(), array[i++]);
-//		}
-		giffle.encode(this, array, 20, Environment.getExternalStorageDirectory()+"/girl.gif");
+		giffle.encode(this, array, 500, Environment.getExternalStorageDirectory()+"/girl.gif");
 		DebugUtil.toast(this, "finish");
 	}
 
@@ -84,8 +75,7 @@ public class GifMain extends Activity implements OnClickListener {
 			mHandler.sendEmptyMessage(ENCODE);
 			break;
 		case R.id.decode:
-			DebugUtil.debug("decode");
-			startActivity(new Intent(GifMain.this,GifActivity.class));
+			mHandler.sendEmptyMessage(DECODE);
 			break;
 		default:
 			break;
